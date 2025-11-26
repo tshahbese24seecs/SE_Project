@@ -1,0 +1,32 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/tshahbese24seecs/SE_Project#readme",
+  "bugs": {
+    "url": "https://github.com/tshahbese24seecs/SE_Project/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tshahbese24seecs/SE_Project.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "nodemon": "^3.1.11",
+    "bcryptjs": "^3.0.2",
+    "connect-mongodb-session": "^5.0.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "express-validator": "^7.2.1",
+    "mongodb": "^6.19.0",
+    "mongoose": "^8.18.0"
+  }
+}
