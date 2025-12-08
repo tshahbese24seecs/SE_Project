@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     trim: true,
   },
   email: { type: String, required: true, unique: true },
-
+  password: { type: String, required: [true, "Password is required"] },
   role: {
     type: String,
     enum: ["citizen", "administration"],
