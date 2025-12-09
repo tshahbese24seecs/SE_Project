@@ -1,7 +1,46 @@
 const complaintModel = require("../models/complaintModel");
 const userModel = require("../models/userModel");
 
-exports.getComplaintList = (req, res) => {};
+exports.getPersonalComplaintList = async (req, res) => {
+  try {
+    const user = await userModel
+      .findOne({ email: req.session.user.email })
+      .populate("registeredComplaints");
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        error: "User not found",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      data: user.registeredComplaints,
+      message: "Your complaints have been fetched",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};
+
+exports.getAllComplaintList = async (req, res) => {
+  try {
+    const complaints = await complaintModel.find();
+    return res.status(200).json({
+      success: true,
+      data: complaints,
+      message: "All Complaints have been fetched",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};
 
 exports.postRegisterComplaint = async (req, res) => {
   try {
@@ -33,8 +72,38 @@ exports.postRegisterComplaint = async (req, res) => {
   } catch (err) {
     return res.status(500).json({
       success: false,
-      message: "Unable to register the complaint",
       error: err.message,
+    });
+  }
+};
+
+exports.updateComplaintStatus = (req, res) => {
+
+
+  
+};
+
+exports.getComplaintDetails = async (req, res) => {
+  try {
+    const complaintId = req.params.complaintId;
+    const complaint = await complaintModel.findById(complaintId);
+
+    if (!complaint) {
+      return res.status(404).json({
+        success: false,
+        error: "Complaint Not Found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Fetched the details of the complaint",
+      data: complaint,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: error.message,
     });
   }
 };

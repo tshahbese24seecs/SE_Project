@@ -8,3 +8,8 @@ complaintRouter.post(
   upload.array("images", 5),
   complaintController.postRegisterComplaint
 );
+complaintRouter.get(
+  "/details/:complaintId",
+  complaintController.getComplaintDetails
+);
+complaintRouter.get("/my", complaintController.getPersonalComplaintList);

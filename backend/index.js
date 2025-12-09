@@ -4,6 +4,8 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 const { default: mongoose } = require("mongoose");
 const authRouter = require("./routes/authRouter");
 const complaintRouter = require("./routes/complaintRouter");
+const adminRouter = require("./routes/adminRouter");
+const isAuth = require("./middleware/isAuth");
 
 const app = express();
 const DB_path = "mongodb://localhost:27017/";
@@ -31,7 +33,7 @@ app.use(
 );
 
 app.use("/auth", authRouter);
-app.use("/complaint", complaintRouter);
+app.use("/complaint", isAuth, complaintRouter, adminRouter);
 
 const PORT = process.env.PORT || 3000;
 
