@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { complaints } from "../api";
 
+// Use proxy base for images as well
+const API_BASE = "/api";
+
 export default function ComplaintDetails() {
   const { id } = useParams();
   const [item, setItem] = useState(null);
@@ -13,7 +16,7 @@ export default function ComplaintDetails() {
         const res = await complaints.details(id);
         setItem(res.data);
       } catch (err) {
-        setError(err.error || err.message || JSON.stringify(err));
+        setError(err?.error || err?.message || JSON.stringify(err));
       }
     }
     load();
@@ -25,14 +28,25 @@ export default function ComplaintDetails() {
   return (
     <div className="card">
       <h2>{item.title}</h2>
-      <div className="meta">{item.category} — {item.location}</div>
-      <p>{item.description}</p>
-      <div className="images">
-        {item.images && item.images.map((img, i) => (
-          <img key={i} src={"http://localhost:3000" + img.url} alt="complaint" />
-        ))}
+
+      <div className="meta">
+        {item.category} — {item.location}
       </div>
-      <div>Status: {item.status || 'N/A'}</div>
+
+      <p>{item.description}</p>
+
+      <div className="images">
+        {item.images &&
+          item.images.map((img, i) => (
+            <img
+              key={i}
+              src={`${API_BASE}${img.url}`}
+              alt="complaint"
+            />
+          ))}
+      </div>
+
+      <div>Status: {item.status || "N/A"}</div>
     </div>
   );
 }

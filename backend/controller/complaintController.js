@@ -1,5 +1,83 @@
+// Core Modules
+const fs = require("fs");
+const path = require("path");
+
+// Local Modules
 const complaintModel = require("../models/complaintModel");
 const userModel = require("../models/userModel");
+
+exports.deleteComplaint = async (req, res) => {
+  try {
+    const { complaintId } = req.params;
+
+    const complaint = await complaintModel.findById(complaintId);
+    if (!complaint) {
+      return res.status(404).json({
+        success: false,
+        message: "Complaint not found",
+      });
+    }
+
+    // Delete images from disk
+    complaint.images.forEach((img) => {
+      const filePath = path.join(__dirname, "..", img.url);
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+      }
+    });
+
+    await complaintModel.findByIdAndDelete(complaintId);
+
+    return res.status(200).json({
+      success: true,
+      message: "Complaint deleted successfully",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Error deleting complaint",
+      error: error.message,
+    });
+  }
+};
+
+exports.updateComplaintStatus = async (req, res) => {
+  try {
+    const { status } = req.body;
+    const { complaintId } = req.params;
+
+    const allowedStatuses = ["Pending", "In Progress", "Resolved"];
+    if (!allowedStatuses.includes(status)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid complaint status",
+      });
+    }
+
+    const complaint = await complaintModel.findById(complaintId);
+    if (!complaint) {
+      return res.status(404).json({
+        success: false,
+        message: "Complaint not found",
+      });
+    }
+
+    complaint.status = status;
+    await complaint.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Complaint status updated",
+      data: complaint,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Error updating complaint status",
+      error: error.message,
+    });
+  }
+};
 
 exports.getPersonalComplaintList = async (req, res) => {
   try {
@@ -77,11 +155,7 @@ exports.postRegisterComplaint = async (req, res) => {
   }
 };
 
-exports.updateComplaintStatus = (req, res) => {
-
-
-  
-};
+exports.updateComplaintStatus = (req, res) => {};
 
 exports.getComplaintDetails = async (req, res) => {
   try {
