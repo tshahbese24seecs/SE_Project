@@ -8,7 +8,8 @@ const adminRouter = require("./routes/adminRouter");
 const isAuth = require("./middleware/isAuth");
 
 const app = express();
-const DB_path = "mongodb://localhost:27017/";
+const DB_path =
+  "mongodb+srv://tahahusnain:<db_password>@cluster0.td9cqbc.mongodb.net/?appName=Cluster0";
 
 const store = MongoDBStore({
   uri: DB_path,
@@ -26,8 +27,8 @@ app.use(
     store,
     cookie: {
       httpOnly: true,
-      secure: false, 
-      maxAge: 1000 * 60 * 60, 
+      secure: false,
+      maxAge: 1000 * 60 * 60,
     },
   })
 );
