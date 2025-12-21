@@ -27,9 +27,9 @@ a { color: inherit; }
 
 .header {
 	display: flex;
-	justify-content: space-between;
+	flex-direction: column;
 	align-items: center;
-	padding: 16px 24px;
+	padding: 18px 20px;
 	background: #0b60e0;
 	color: #fff;
 	position: sticky;
@@ -42,12 +42,34 @@ a { color: inherit; }
 	font-weight: 800;
 	letter-spacing: -0.01em;
 	color: #fff;
+	font-size: 1.1rem;
+	text-align: center;
 }
 
 .nav {
+	position: relative;
+	display: flex;
+	width: 100%;
+	max-width: 1100px;
+	align-items: center;
+	gap: 12px;
+	margin-top: 10px;
+	height: 44px;
+}
+
+.nav-center {
 	display: flex;
 	gap: 12px;
+	margin: 0 auto;
+	justify-content: center;
 	align-items: center;
+}
+
+.nav-right {
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
 }
 
 .nav a,
@@ -192,4 +214,11 @@ button:hover { transform: translateY(-1px); box-shadow: 0 16px 34px rgba(31, 111
 	display: flex;
 	gap: 10px;
 	flex-wrap: wrap;
+}
+
+/* Logout specific styling */
+.nav .logout {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.18);
+    padding: 10px 14px;
 }

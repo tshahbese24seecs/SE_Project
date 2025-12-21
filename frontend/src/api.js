@@ -65,6 +65,7 @@ export const auth = {
     request("/auth/logout", {
       method: "POST",
     }),
+  status: () => request("/auth/status"),
 };
 
 /* =========================

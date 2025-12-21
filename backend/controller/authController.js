@@ -148,3 +148,11 @@ exports.postLogoutRequest = (req, res) => {
     return res.status(200).json({ isLoggedIn: false, message: "Logged out" });
   });
 };
+
+exports.getStatus = (req, res) => {
+  if (req.session && req.session.isLoggedIn && req.session.user) {
+    return res.status(200).json({ isLoggedIn: true, user: req.session.user });
+  }
+
+  return res.status(200).json({ isLoggedIn: false });
+};
