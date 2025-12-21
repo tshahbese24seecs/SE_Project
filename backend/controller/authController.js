@@ -143,5 +143,8 @@ exports.postLogoutRequest = (req, res) => {
         error: error.message,
       });
     }
+
+    // Successfully destroyed session — return a clear JSON response
+    return res.status(200).json({ isLoggedIn: false, message: "Logged out" });
   });
 };
