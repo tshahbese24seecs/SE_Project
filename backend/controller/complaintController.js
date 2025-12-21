@@ -120,6 +120,22 @@ exports.getAllComplaintList = async (req, res) => {
   }
 };
 
+exports.getPendingComplaintList = async (_req, res) => {
+  try {
+    const complaints = await complaintModel.find({ status: { $in: [null, "pending", "Pending"] } });
+    return res.status(200).json({
+      success: true,
+      data: complaints,
+      message: "Pending complaints have been fetched",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};
+
 exports.postRegisterComplaint = async (req, res) => {
   try {
     const images = req.files.map((f) => ({

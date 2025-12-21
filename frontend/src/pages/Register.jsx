@@ -30,6 +30,7 @@ export default function Register() {
   return (
     <div className="card">
       <h2>Register</h2>
+      <p className="meta">Create your account to submit and track complaints.</p>
       <form onSubmit={submit}>
         <label>First Name</label>
         <input name="firstName" value={form.firstName} onChange={handle} />

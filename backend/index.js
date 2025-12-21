@@ -7,6 +7,7 @@ const path = require("path");
 const authRouter = require("./routes/authRouter");
 const complaintRouter = require("./routes/complaintRouter");
 const adminRouter = require("./routes/adminRouter");
+const publicRouter = require("./routes/publicRouter");
 const { isAuth } = require("./middleware/isAuth");
 
 const app = express();
@@ -40,6 +41,9 @@ app.use(
     },
   })
 );
+
+// Public routes (no auth)
+app.use("/public", publicRouter);
 
 // Serve uploaded files
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));

@@ -22,6 +22,7 @@ export default function Login() {
   return (
     <div className="card">
       <h2>Login</h2>
+      <p className="meta">Access your complaints and track statuses.</p>
       <form onSubmit={submit}>
         <label>Email</label>
         <input value={email} onChange={(e) => setEmail(e.target.value)} />

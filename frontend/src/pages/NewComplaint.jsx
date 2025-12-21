@@ -36,6 +36,7 @@ export default function NewComplaint() {
   return (
     <div className="card">
       <h2>New Complaint</h2>
+      <p className="meta">Attach up to 5 images to help administrators triage faster.</p>
       <form onSubmit={submit}>
         <label>Title</label>
         <input value={title} onChange={(e) => setTitle(e.target.value)} />

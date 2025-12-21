@@ -81,6 +81,8 @@ export const complaints = {
   my: () => request("/complaint/my"),
 
   details: (id) => request(`/complaint/details/${id}`),
+
+  pending: () => request("/public/pending"),
 };
 
 export default request;

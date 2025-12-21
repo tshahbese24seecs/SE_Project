@@ -29,8 +29,10 @@ export default function ComplaintDetails() {
     <div className="card">
       <h2>{item.title}</h2>
 
-      <div className="meta">
-        {item.category} — {item.location}
+      <div className="inline-actions">
+        <span className="tag">{item.category || "General"}</span>
+        <span className="tag">{item.location || "Unknown"}</span>
+        <span className="tag">Status: {item.status || "N/A"}</span>
       </div>
 
       <p>{item.description}</p>

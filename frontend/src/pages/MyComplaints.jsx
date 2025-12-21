@@ -27,7 +27,11 @@ export default function MyComplaints() {
         {items.map((c) => (
           <li key={c._id}>
             <Link to={`/complaint/${c._id}`}>{c.title}</Link>
-            <div className="meta">{c.category} — {c.location} — {c.status || 'N/A'}</div>
+            <div className="meta">
+              <span className="tag">{c.category || "General"}</span>
+              <span className="tag">{c.location || "Unknown"}</span>
+              <span className="tag">Status: {c.status || 'N/A'}</span>
+            </div>
           </li>
         ))}
       </ul>
