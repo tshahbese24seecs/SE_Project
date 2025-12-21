@@ -13,3 +13,4 @@ complaintRouter.get(
   complaintController.getComplaintDetails
 );
 complaintRouter.get("/my", complaintController.getPersonalComplaintList);
+module.exports = complaintRouter;

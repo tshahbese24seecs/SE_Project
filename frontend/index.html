@@ -1,28 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Citizen Complaint Portal</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-
-    <header class="header">
-        <h1>Citizen Complaint Portal</h1>
-        <p>Report issues. Track progress. Improve your city.</p>
-    </header>
-
-    <section class="landing-container">
-        <div class="landing-card">
-            <h2>Welcome</h2>
-            <p>Please login or create an account to continue.</p>
-
-            <div class="landing-buttons">
-                <a href="auth/login.html" class="btn primary">Login</a>
-                <a href="auth/signup.html" class="btn secondary">Sign Up</a>
-            </div>
-        </div>
-    </section>
-
-</body>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
