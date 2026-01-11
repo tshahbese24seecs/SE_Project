@@ -12,7 +12,7 @@ const { isAuth } = require("./middleware/isAuth");
 
 const app = express();
 const DB_path =
-  "mongodb+srv://tahahusnain:liX6lPMj54NF3YV4@cluster0.td9cqbc.mongodb.net/airbnb?retryWrites=true&w=majority&appName=Cluster0";
+  "http://localhost:27017;
 
 const store = MongoDBStore({
   uri: DB_path,
